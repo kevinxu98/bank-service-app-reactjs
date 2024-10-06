@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import dotenv from 'dotenv';
 
-dotenv.config();
 
-const testId = process.env.TESTID;
+
+const testId = process.env.REACT_APP_TESTID;
 
 interface BankRecord {
     version: number;
