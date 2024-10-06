@@ -1,8 +1,12 @@
+import React from 'react';
 
+interface ButtonProps {
+    onClick: () => void;
+}
 
-function Button() {
+const Button: React.FC<ButtonProps> = ({ onClick }) => {
     return (
-        <button>Click me</button>
+        <button onClick={onClick}>Refresh</button>
     );
 }
 

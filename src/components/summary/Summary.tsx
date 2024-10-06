@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
-
 const testId = process.env.REACT_APP_TESTID;
 
 interface BankRecord {
-    version: number;
-    id: string;
-    savingsAcctBalance: number;
-    checkingAcctBalance: number;
-    firstName: string;
-    lastName: string;
+  version: number;
+  id: string;
+  savingsAcctBalance: number;
+  chequingAcctBalance: number;
+  firstName: string;
+  lastName: string;
 }
 
-function Summary() {
+interface SummaryProps {
+  reloadTrigger: number;
+}
+
+function Summary({ reloadTrigger }: SummaryProps) {
   const [bankRecord, setBankRecord] = useState<BankRecord | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBankRecord = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/queries/getBankRecord/' + testId); 
+        const response = await axios.get(`http://localhost:8000/queries/getBankRecord/${testId}`);
         setBankRecord(response.data);
       } catch (err: any) {
         setError(err.message);
@@ -30,9 +32,8 @@ function Summary() {
         setLoading(false);
       }
     };
-
-    fetchBankRecord();
-  }, []);
+    fetchBankRecord()}, [reloadTrigger]
+); 
 
   if (loading) {
     return <div>Loading...</div>;
@@ -47,9 +48,9 @@ function Summary() {
       <h1>Account Summary</h1>
       {bankRecord ? (
         <div>
-          <p>Account Holder: {bankRecord.firstName}</p>
-          <p>Chequing Account Balance: {bankRecord.checkingAcctBalance}</p>
-          <p>Savings Account Holder: {bankRecord.savingsAcctBalance}</p>
+          <p>Account Holder: {bankRecord.firstName} {bankRecord.lastName}</p>
+          <p>Chequing Account Balance: {bankRecord.chequingAcctBalance}</p>
+          <p>Savings Account Balance: {bankRecord.savingsAcctBalance}</p>
         </div>
       ) : (
         <p>No bank record found.</p>
