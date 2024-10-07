@@ -26,7 +26,7 @@ const Auth: React.FC = () => {
         if (accessToken) {
           try {
             await axios.post('http://localhost:8000/api/createBankRecord', {
-              userId: user.id, // supabase user id
+              userId: user.id, 
               firstName,
               lastName,
               chequingAcctBalance: 0, 
