@@ -47,14 +47,25 @@ const Saving: React.FC<SavingProps> = ({ onReload }) => {
         }
     }
     return (
-        <div>
-            <h1>Saving</h1>
-            <input type="number" value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
-            <button onClick={handleDeposit}>Deposit</button>
-            <button onClick={handleWithdraw}>Withdraw</button>
-            {error && <div>Error: {error}</div>}
+        <div className="card p-4 mb-4">
+          <h2 className="text-center mb-4">Saving</h2>
+          <div className="mb-3">
+            <label htmlFor="amount" className="form-label">Amount</label>
+            <input
+              type="number"
+              className="form-control"
+              id="amount"
+              value={amount}
+              onChange={(e) => setAmount(parseInt(e.target.value))}
+            />
+          </div>
+          <div className="d-grid gap-2">
+            <button className="btn btn-primary rounded-pill" onClick={handleDeposit}>Deposit</button>
+            <button className="btn btn-secondary rounded-pill" onClick={handleWithdraw}>Withdraw</button>
+          </div>
+          {error && <div className="alert alert-danger mt-3">{error}</div>}
         </div>
-    )
+      );
 }
 
 export default Saving;
