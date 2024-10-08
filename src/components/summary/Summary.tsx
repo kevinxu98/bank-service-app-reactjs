@@ -49,13 +49,12 @@ function Summary({ userId, reloadTrigger }: SummaryProps) {
   }
 
   return (
-    <div>
-      <h1>Account Summary</h1>
+    <div className="card p-4 mb-4">
       {bankRecord ? (
         <div>
-          <p>Account Holder: {bankRecord.firstName} {bankRecord.lastName}</p>
-          <p>Chequing Account Balance: {bankRecord.chequingAcctBalance}</p>
-          <p>Savings Account Balance: {bankRecord.savingsAcctBalance}</p>
+          <p><strong>Account Holder:</strong> {bankRecord.firstName} {bankRecord.lastName}</p>
+          <p><strong>Chequing Account Balance:</strong> {bankRecord.chequingAcctBalance}</p>
+          <p><strong>Savings Account Balance:</strong> {bankRecord.savingsAcctBalance}</p>
         </div>
       ) : (
         <p>No bank record found.</p>

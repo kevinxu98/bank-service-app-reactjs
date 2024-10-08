@@ -18,11 +18,23 @@ function Dashboard() {
   };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      {userId && <Summary userId={userId} reloadTrigger={reloadTrigger} />}
-      <Chequing onReload={handleButtonClick} />
-      <Saving onReload={handleButtonClick} />
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <div className="card p-4">
+            <h1 className="text-center mb-4">Bank Dashboard</h1>
+            {userId && <Summary userId={userId} reloadTrigger={reloadTrigger} />}
+            <div className="row">
+              <div className="col-md-6">
+                <Chequing onReload={handleButtonClick} />
+              </div>
+              <div className="col-md-6">
+                <Saving onReload={handleButtonClick} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
