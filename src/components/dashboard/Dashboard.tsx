@@ -22,8 +22,8 @@ function Dashboard() {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-8">
-          <div className="card p-4">
-            <h1 className="text-center mb-4">Dashboard</h1>
+          <div className="p-4">
+            <h1 className="text-center mb-4">Bank Dashboard</h1>
             {userId && <Summary userId={userId} reloadTrigger={reloadTrigger} />}
             <div className="row">
               <div className="col-md-6">
@@ -33,7 +33,7 @@ function Dashboard() {
                 <Saving onReload={handleButtonClick} />
               </div>
             </div>
-            <div className="mt-4">
+            <div className="d-flex justify-content-end mt-4">
               <Logout /> 
             </div>
           </div>

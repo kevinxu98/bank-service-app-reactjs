@@ -8,7 +8,7 @@ const Logout: React.FC = () => {
   };
 
   return (
-    <div className="d-grid gap-2">
+    <div className="d-grid gap-2 mt-5">
       <button className="btn btn-danger rounded-pill" onClick={handleLogout}>Logout</button>
     </div>
   );

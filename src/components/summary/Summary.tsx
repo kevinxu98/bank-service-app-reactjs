@@ -49,7 +49,7 @@ function Summary({ userId, reloadTrigger }: SummaryProps) {
   }
 
   return (
-    <div className="card p-4 mb-4">
+    <div className="card p-4 mb-5 py-4 mt-5">
       {bankRecord ? (
         <div>
           <p><strong>Account Holder:</strong> {bankRecord.firstName} {bankRecord.lastName}</p>
