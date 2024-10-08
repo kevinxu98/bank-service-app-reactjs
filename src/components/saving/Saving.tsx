@@ -5,7 +5,8 @@ interface SavingProps {
     onReload: () => void;
 }
 
-const id = process.env.REACT_APP_TESTID;
+const token = localStorage.getItem('jwtToken');
+const userId = localStorage.getItem('userId');
 
 const Saving: React.FC<SavingProps> = ({ onReload }) => {
 
@@ -14,7 +15,12 @@ const Saving: React.FC<SavingProps> = ({ onReload }) => {
 
     const handleDeposit = async () => {
         try {
-            await axios.put(`http://localhost:8000/commands/savingsDeposit/${id}/${amount}`);
+            await axios.put(`http://localhost:8000/commands/savingsDeposit/${userId}/${amount}`, null,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             setAmount(0);
             onReload();
         }
@@ -26,7 +32,12 @@ const Saving: React.FC<SavingProps> = ({ onReload }) => {
 
     const handleWithdraw = async() => {
         try {
-            await axios.put(`http://localhost:8000/commands/savingsWithdrawal/${id}/${amount}`);
+            await axios.put(`http://localhost:8000/commands/savingsWithdrawal/${userId}/${amount}`, null,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             setAmount(0);
             onReload();
         }

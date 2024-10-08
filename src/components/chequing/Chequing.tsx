@@ -5,7 +5,8 @@ interface ChequingProps {
   onReload: () => void;
 }
 
-const id = process.env.REACT_APP_TESTID;
+const token = localStorage.getItem('jwtToken');
+const userId = localStorage.getItem('userId');
 
 const Chequing: React.FC<ChequingProps> = ({ onReload }) => {
   const [amount, setAmount] = useState<number>(0);
@@ -13,7 +14,12 @@ const Chequing: React.FC<ChequingProps> = ({ onReload }) => {
 
   const handleDeposit = async () => {
     try {
-      await axios.put(`http://localhost:8000/commands/chequingDeposit/${id}/${amount}`);
+      await axios.put(`http://localhost:8000/commands/chequingDeposit/${userId}/${amount}`, null, 
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        } 
+      });
       setAmount(0);
       onReload(); 
     } catch (err: any) {
@@ -23,7 +29,12 @@ const Chequing: React.FC<ChequingProps> = ({ onReload }) => {
 
   const handleWithdraw = async () => {
     try {
-      await axios.put(`http://localhost:8000/commands/chequingWithdrawal/${id}/${amount}`);
+      await axios.put(`http://localhost:8000/commands/chequingWithdrawal/${userId}/${amount}`, null, 
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwtToken')}`
+        }
+      });
       setAmount(0);
       onReload(); 
     } catch (err: any) {

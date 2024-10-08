@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const testId = process.env.REACT_APP_TESTID;
 
 interface BankRecord {
   version: number;
@@ -13,10 +12,11 @@ interface BankRecord {
 }
 
 interface SummaryProps {
+  userId: string;
   reloadTrigger: number;
 }
 
-function Summary({ reloadTrigger }: SummaryProps) {
+function Summary({ userId, reloadTrigger }: SummaryProps) {
   const [bankRecord, setBankRecord] = useState<BankRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,7 +24,12 @@ function Summary({ reloadTrigger }: SummaryProps) {
   useEffect(() => {
     const fetchBankRecord = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/queries/getBankRecord/${testId}`);
+        const token = localStorage.getItem('jwtToken'); // retrieve the JWT token from local storage
+        const response = await axios.get(`http://localhost:8000/queries/getBankRecord/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         setBankRecord(response.data);
       } catch (err: any) {
         setError(err.message);
@@ -32,8 +37,8 @@ function Summary({ reloadTrigger }: SummaryProps) {
         setLoading(false);
       }
     };
-    fetchBankRecord()}, [reloadTrigger]
-); 
+    fetchBankRecord();
+  }, [userId, reloadTrigger]);
 
   if (loading) {
     return <div>Loading...</div>;

@@ -4,12 +4,12 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:3000", // Correct port for create-react-app
-            "webRoot": "${workspaceFolder}/src", // Point to the src directory
-            "sourceMaps": true, // Enable source maps
-            "trace": true, // Enable tracing for debugging
-            "skipFiles": ["node_modules/**"] // Skip node_modules for cleaner debugging
+            "name": "Launch Chrome Debugger",
+            "url": "http://localhost:3000", 
+            "webRoot": "${workspaceFolder}/src", 
+            "sourceMaps": true, 
+            "trace": true, 
+            "skipFiles": ["node_modules/**"] 
         }
     ]
 }
