@@ -24,7 +24,12 @@ function Summary({ reloadTrigger }: SummaryProps) {
   useEffect(() => {
     const fetchBankRecord = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/queries/getBankRecord/${testId}`);
+        const token = localStorage.getItem('jwtToken'); // retrieve the JWT token from local storage
+        const response = await axios.get(`http://localhost:8000/queries/getBankRecord/${testId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         setBankRecord(response.data);
       } catch (err: any) {
         setError(err.message);
@@ -32,8 +37,8 @@ function Summary({ reloadTrigger }: SummaryProps) {
         setLoading(false);
       }
     };
-    fetchBankRecord()}, [reloadTrigger]
-); 
+    fetchBankRecord();
+  }, [reloadTrigger]);
 
   if (loading) {
     return <div>Loading...</div>;
