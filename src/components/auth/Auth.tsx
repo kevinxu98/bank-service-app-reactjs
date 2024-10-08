@@ -66,7 +66,7 @@ const Auth = () => {
   };
 
   return (
-    <div>
+    <div className='container mt-5'>
       <h1>{isSignUp ? 'Sign Up' : 'Sign In'}</h1>
       {isSignUp ? (
         <>
