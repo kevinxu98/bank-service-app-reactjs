@@ -18,4 +18,5 @@ Fully functional banking application with the following features:
 - React Router
 
 ![Bank Login](public/bank-app-login.png)
-![Bank Dashboard](public/bank-app-dashboard.png)
+
+![Bank Dashboard](public/bank-dashboard.png)
